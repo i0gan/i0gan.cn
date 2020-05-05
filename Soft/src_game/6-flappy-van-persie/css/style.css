@@ -1,0 +1,51 @@
+html, body{
+    margin : 0px;
+    width : 100%;
+    height : 100%;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    font-family: sans-serif;
+}
+
+#canvasContainer{
+    margin : 0px;
+    width : 100%;
+    height : 100%;
+}
+
+#infoScreen{
+    position: absolute;
+    z-index: 1000;
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-style: solid;
+    border-color: #222222;
+    border-width: 3px;
+    text-align: center;
+    padding: 40px;
+    background-color: #FFFFFF;
+    display: none;
+}
+
+button{
+    font-weight: bold;
+    height: 40px;
+}
+
+#openButton{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#shareButton{
+    position: absolute;
+    bottom: 5px;
+    right: 80px;
+}
+
+a{
+    font-weight: bold;
+}
