@@ -1,8 +1,10 @@
 {
-    "port" : 8080,
-    "number_of_thread": 4,
+    "port" : 80,
+    "number_of_thread": 8,
     "log_path" : "data/log",
     "root_path" : "www",
     "web_page" : "index.html",
-    "web_404_page" : "404.html"
+    "web_404_page" : "404.html",
+    "firewall" : {
+    }
 }

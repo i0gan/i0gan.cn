@@ -1,4 +1,4 @@
 # My Web
 
-很垃圾的静态网页平台......
+It's a very rubbish website about me
 
