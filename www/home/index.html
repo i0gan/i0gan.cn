@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>I0gan's HOME</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+	</head>
+	<!-- background animations -->
+<div class="div_bg">
+  <canvas id="c"></canvas>
+</div>
+<script>
+  var c = document.getElementById("c");
+  var ctx = c.getContext("2d");
+  c.height = window.innerHeight;
+  c.width = window.innerWidth;
+  var txts = "{{site.bgtext}}";
+  txts = txts.split("");
+  var font_size = 12;
+  var columns = c.width / font_size;
+  var drops = [];
+  for (var x = 0; x < columns; x++) drops[x] = 1;
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, c.width, c.height);
+    ctx.fillStyle = "#490";
+    ctx.font = font_size + "px arial";
+    for (var i = 0; i < drops.length; i++) {
+      var text = txts[Math.floor(Math.random() * txts.length)];
+      ctx.fillText(text, i * font_size, drops[i] * font_size);
+      if (drops[i] * font_size > c.height || Math.random() > 0.98) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  setInterval(draw, 20);
+</script>
+	<body class="is-preload" bgcolor="black">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-gem"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<p>不积跬步，无以至千里；不积小流，无以成江海!</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="res/data/res_01.html" >资源</a></li>
+								<li><a href="http://ltalk.co">LTALK</a></li>
+								<li><a href="software/software.html">微应用</a></li>
+								<li><a href="me/index.html">Me</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">© 2020 All Rights Reserved I0gan [黔ICP备20006037号-1]</p>
+					</footer>
+		
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+		
+			<link rel="stylesheet" href="css/style.css">
+	
+	</body>
+</html>

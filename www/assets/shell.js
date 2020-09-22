@@ -837,9 +837,9 @@ Filesystem = {
 
 Filesystem.github = linkFile("https://github.com/i0gan");
 Filesystem.blog = linkFile("http://blog.i0gan.cn");
-Filesystem.home = linkFile("http://home.i0gan.cn");
-Filesystem.me = linkFile("http://home.i0gan.cn/me/index.html");
-Filesystem.res = linkFile("http://home.i0gan.cn/res/data/res_01.html");
+Filesystem.home = linkFile("home/index.html");
+Filesystem.me = linkFile("home/me/index.html");
+Filesystem.res = linkFile("home/res/data/res_01.html");
 
 TerminalShell.pwd = Filesystem;
 TerminalShell.commands.cd = function(a, b) {
