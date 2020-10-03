@@ -231,12 +231,12 @@ var TerminalShell = {
         help: function help(a) {
             a.print($("<h3>help</h3>"));
             cmd_list = $("<ul>");
-            $.each(["cd", "ls", "cat", ],
+            $.each(["cd", "ls", "cat", "write", "sqlmap", "ifconfig", "arch", "..."],
             function(c, b) {
                 cmd_list.append($("<li>").text(b))
             });
             a.print(cmd_list);
-            a.print(cow("Find more commands BY YOURSELF!"))
+            a.print(cow("Are you not hacker???"))
         },
         clear: function(a) {
             a.clear()
@@ -286,7 +286,7 @@ var Terminal = {
         fg_color: "#FFF",
         cursor_blink_time: 700,
         cursor_style: "block",
-        prompt: "i0gan@os:/$ ",
+        prompt: "i0gan@arch:~$ ",
         spinnerCharacters: ["[   ]", "[.  ]", "[.. ]", "[...]"],
         spinnerSpeed: 250,
         typingSpeed: 50
@@ -725,7 +725,7 @@ TerminalShell.commands.sudo = function(a) {
             }
         } else {
             if (!b) {
-                a.print("sudo what?")
+                a.print("usage: sudo -h | -K | -k | -V")
             } else {
                 a.print("sudo: " + b + ": command not found")
             }
@@ -751,12 +751,12 @@ TerminalShell.filters.push(function(b, c) {
 TerminalShell.commands.shutdown = TerminalShell.commands.poweroff = function(a) {
     if (a.god) {
         if (a.god) {
-            a.print("Broadcast message from root@os")
+            a.print("Broadcast message from root@arch")
         } else {
-            a.print("Broadcast message from i0gan@os")
+            a.print("Broadcast message from i0gan@arch")
         }
         a.print();
-        a.print("The system is going down for maintenance NOW!");
+        a.print("The system is going down for maintenance now!");
         return $("#screen").fadeOut()
     } else {
         a.print("Must be root.")
@@ -803,7 +803,7 @@ Filesystem = {
     "welcome": {
         type: "file",
         read: function(a) {
-            a.print($("<p>").html("<b>Welcome to i0gan's shell! you can't find flag ^_^ !!!</b>"))
+            a.print($("<p>").html("<b>Welcome your hacker has got my shell!</b>"))
         }
     },
     "about": {
@@ -830,7 +830,7 @@ Filesystem = {
         type: "file",
         read: function(a) {
             a.print(xkcd.face);
-            a.print(randomChoice(["Capture me if you can!", "Do you want to cheat?", "Need hint?", "No more hints", "Warning!! hints here!"]))
+            a.print(randomChoice(["flag{QQ_418894113}", "flag{like_to_sleep}", "flag{no_money...}", "flag{so_many_dreams_not_realized}", "flag{singal_boy}", "flag{no_girl_friend}"]))
         }
     }
 };
@@ -852,7 +852,14 @@ TerminalShell.commands.cd = function(a, b) {
             }
         }
     } else {
-        a.print("cd: " + b + ": No such file or directory")
+        if(b == "/") {
+            a.print("cd: " + b + ": Permission denied");
+        }else if(b == "..") {
+            a.print("cd: " + b + ": Permission denied");
+        }
+        else{
+            a.print("cd: " + b + ": No such file or directory");
+        }
     }
 };
 
@@ -868,7 +875,18 @@ TerminalShell.commands.dir = TerminalShell.commands.ls = function(b, c) {
             a.append($("<li>").text(d))
         }
     });
-    b.print(a)
+    if(c) {
+        if(c == "/") {
+            b.print("bin  boot  dev  etc  home  lib  lib64  lost+found  opt  proc  root  run  sbin  srv  sys  tmp  usr  var");
+        }else if(c == "/home") {
+            b.print("i0gan");
+        }else {
+            b.print("ls: cannot access '" + c + "': Permission denied");
+        }
+        
+    }else {
+        b.print(a)
+    }
 };
 TerminalShell.commands.type = TerminalShell.commands.cat = function(a, b) {
     if (b in this.pwd) {
@@ -916,10 +934,10 @@ TerminalShell.commands.rm = function(b, a, c) {
 };
 
 
-
 TerminalShell.commands.hint = TerminalShell.commands.cheat = function(a) {
     a.print(cow("Do you know me about more? try cat ... flag"))
 };
+
 TerminalShell.commands.wget = TerminalShell.commands.curl = function(c, b) {
     if (b) {
         c.setWorking(true);
@@ -933,6 +951,7 @@ TerminalShell.commands.wget = TerminalShell.commands.curl = function(c, b) {
         c.print("Please specify a URL.")
     }
 };
+
 function oneLiner(a, c, b) {
     if (b.hasOwnProperty(c)) {
         a.print(b[c]);
@@ -958,20 +977,173 @@ TerminalShell.commands.sleep = function(a, b) {
     1000 * b)
 };
 
+TerminalShell.commands.ifconfig = function(a, b) {
+    a.print("lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536");
+    a.print("    inet 127.0.0.1  netmask 255.0.0.0");
+    a.print("    inet6 ::1  prefixlen 128  scopeid 0x10<host>");
+    a.print("    loop  txqueuelen 1000  (Local Loopback)");
+    a.print("    RX packets 89381  bytes 28035256 (26.7 MiB)");
+    a.print("    RX errors 0  dropped 0  overruns 0  frame 0");
+    a.print("    TX packets 89381  bytes 28035256 (26.7 MiB)");
+    a.print("    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0");
+}
+
+TerminalShell.commands.ip = function(a, b) {
+    a.print("lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536");
+    a.print("    inet 127.0.0.1  netmask 255.0.0.0");
+    a.print("    inet6 ::1  prefixlen 128  scopeid 0x10<host>");
+    a.print("    loop  txqueuelen 1000  (Local Loopback)");
+    a.print("    RX packets 89381  bytes 28035256 (26.7 MiB)");
+    a.print("    RX errors 0  dropped 0  overruns 0  frame 0");
+    a.print("    TX packets 89381  bytes 28035256 (26.7 MiB)");
+    a.print("    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0");
+}
+
+TerminalShell.commands.ping = function(a, b) {
+    if(b) {
+        var ip = b;
+        a.print("PING " + ip + " (" + ip + ") 56(84) bytes of data.");
+        for(var i = 0; i < 4; i++) {
+            a.print("64 bytes from " + ip + ": icmp_seq=" + i + " ttl=64 time=0.043 ms");
+            //sleep(100);
+        }
+        a.print("4 packets transmitted, 4 received, 0% packet loss, time 3049ms");
+    }else {
+        a.print("ping: usage error: Destination address required");
+    }
+}
+
+TerminalShell.commands.nmap = function(a, b) {
+    if(b) {
+        a.print("Starting Nmap 7.80 ( https://nmap.org ) at " + new Date().toDateString() + " CST");
+        a.print("Nmap scan report for " + b);
+        a.print("Host is up (0.094s latency).");
+        a.print("Not shown: 953 closed ports, 40 filtered ports");
+        a.print("PORT     STATE SERVICE");
+        a.print("22/tcp   open  ssh");
+        a.print("80/tcp   open  http");
+        a.print("81/tcp   open  hosts2-ns");
+        a.print("82/tcp   open  xfer");
+        a.print("88/tcp   open  kerberos-sec");
+        a.print("1024/tcp open  kdm");
+        a.print("8080/tcp open  http-proxy");
+    }else {
+        a.print("Usage: nmap [Scan Type(s)] [Options] {target specification}");
+    }
+}
+
+
+TerminalShell.commands.file = function(a, b) {
+    if(b) {
+        if(this.pwd[b].type == "file") {
+            a.print("type: file");
+        }else {
+            a.print("type: directory");
+        }
+    }else {
+        a.print("Usage: file [-bcCdEhikLlNnprsSvzZ0] [--apple] [--extension] [--mime-encoding]");
+        a.print("            [--mime-type] [-e <testname>] [-F <separator>]  [-f <namefile>]");
+        a.print("            [-m <magicfiles>] [-P <parameter=value>] <file> ...");
+        a.print("       file -C [-m <magicfiles>]");
+        a.print("       file [--help]");
+    }
+}
+
+TerminalShell.commands.sqlmap = function(a, b) {
+    
+    a.print("        ___");
+    a.print("       __H__");
+    a.print(" ___ ___[(]_____ ___ ___  {1.4.4#stable}");
+    a.print("|_ -| . [,]     | .'| . |");
+    a.print("|___|_  [']_|_|_|__,|  _|");
+    a.print("      |_|V...       |_|   http://sqlmap.org");
+
+    if(b) {
+        a.print("attacking.... [" + b + "]");
+    }else {
+        a.print("Usage: python sqlmap.py [options]");
+        a.print("sqlmap.py: error: missing a mandatory option (-d, -u, -l, -m, -r, -g, -c, --list-tampers, --wizard, --update,--   purge or --dependencies). Use -h for basic and -hh for advanced help");
+    }
+
+}
+
+TerminalShell.commands.uname = function(a, b) {
+    a.print("Linux arch 5.7.2-arch1-1 #1 SMP PREEMPT Wed, 10 Jun 2020 20:36:24 +0000 x86_64 GNU/Linux");
+};
+
+TerminalShell.commands.lsblk = function(a, b) {
+    
+    a.print("NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT");
+    a.print("nvme0n1     259:0    0   477G  0 disk ");
+    a.print("├─nvme0n1p1 259:1    0   256M  0 part /boot/efi");
+    a.print("├─nvme0n1p2 259:2    0   100G  0 part ");
+    a.print("├─nvme0n1p3 259:3    0    75G  0 part ");
+    a.print("├─nvme0n1p4 259:4    0   100G  0 part /");
+    a.print("├─nvme0n1p5 259:5    0   100G  0 part /run/media/logan/disk1");
+    a.print("└─nvme0n1p6 259:6    0 101.7G  0 part /run/media/logan/disk2");
+}
+
+
+
+TerminalShell.commands.ps = function(a, b) {
+    a.print("PID TTY          TIME CMD");
+    a.print("  18437 pts/2    00:00:00 bash");
+    a.print("  18504 pts/2    00:00:00 ps");
+}
+
+TerminalShell.commands.who = function(a, b) {
+    a.print("i0gan                 2019-12-23 16:09");
+    a.print("i0gan    tty1         2020-03-02 16:11 (:0)");
+    a.print("i0gan    pts/1        2020-05-22 18:00 (:0)");
+    a.print("i0gan    pts/2        2020-06-11 00:04 (:0)");
+}
+
+TerminalShell.commands.os = TerminalShell.commands.neofeach = TerminalShell.commands.arch = function(a, b) {
+    
+    a.print("                   -`                    logan@arch ");
+    a.print("                  .o+`                   ---------- ");
+    a.print("                 `ooo/                   OS: Arch Linux x86_64 ");
+    a.print("                `+oooo:                  Host: 81XD Lenovo XiaoXinPro-14API 2020 ");
+    a.print("               `+oooooo:                 Kernel: 5.8.2-arch1-1 ");
+    a.print("               -+oooooo+:                Uptime: 220 hours, 40 mins ");
+    a.print("             `/:-:++oooo+:               Packages: 1132 (pacman) ");
+    a.print("            `/++++/+++++++:              Shell: zsh 5.8 ");
+    a.print("           `/++++++++++++++:             Resolution: 2560x1600 ");
+    a.print("          `/+++ooooooooooooo/`           DE: Plasma ");
+    a.print("         ./ooosssso++osssssso+`          WM: KWin ");
+    a.print("        .oossssso-````/ossssss+`         WM Theme: Layan ");
+    a.print("       -osssssso.      :ssssssso.        Theme: Layan [Plasma] ");
+    a.print("      :osssssss/        osssso+++.       Icons: Tela [Plasma] ");
+    a.print("     /ossssssss/        +ssssooo/-       Terminal: konsole ");
+    a.print("   `/ossssso+/:-        -:/+osssso+-     Terminal Font: Hack 18 ");
+    a.print("  `+sso+:-`                 `.-/+oso:    CPU: AMD Ryzen 8 3550H with Radeon Vega Mobile Gfx (10) @ 2.10 ");
+    a.print(" `++:.                           `-/+/   GPU: AMD ATI 03:00.0 Picasso ");
+    a.print(" .`                                 `/   Memory: 3232MiB / 15940MiB");
+
+}
 
 TerminalShell.commands.echo = function(a, b) {
     a.print(b)
 };
+
+TerminalShell.commands.write = function(a, b) {
+    if(b) {
+        a.print("you write [" + b + "] to admin "); 
+        a.print("i0gan will response your qurestion soon"); 
+    }else {
+        a.print("Usage: write [your msg]"); 
+    }
+    
+};
+
 TerminalShell.fallback = function(a, b) {
     oneliners = {
-        pwd: "/home/i0gan",
+        pwd: "/",
         date: new Date().toDateString(),
         time: new Date().toTimeString(),
-        "os": xkcd.face,
-        nmap: "Usage: nmap [Scan Type(s)] [Options] {target specification}",
         fuck: "The connection was reset...",
         whoami: "i0gan",
-        uname: navigator.platform,
+        
     };
     oneliners.emacs = "You should really use vim.";
     oneliners.vi = oneliners.vim = "You should really use emacs.";
@@ -989,6 +1161,15 @@ $(document).ready(function() {
     Terminal.promptActive = false;
     $("#screen").bind("cli-load",
     function(a) {
+        // init show
+        Terminal.print(" _  ___                     ");  
+        Terminal.print("(_)/ _ \\  __ _  __ _ _ __  ");
+        Terminal.print("| | | | |/ _` |/ _` | '_ \\ ");
+        Terminal.print("| | |_| | (_| | (_| | | | |");
+        Terminal.print("|_|\\___/ \\__, |\\__,_|_| |_|");
+        Terminal.print("         |___/             ");
+        
+        
         Terminal.print();
         Terminal.print($("<h4>").text("i0gan's shell"));
         Terminal.print();
