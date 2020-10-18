@@ -803,7 +803,10 @@ Filesystem = {
     "welcome": {
         type: "file",
         read: function(a) {
-            a.print($("<p>").html("<b>Welcome your hacker has got my shell!</b>"))
+            a.print()
+            a.print($("<p>").html("<b>This website has been attacked at 2020-10-17 03:25:08</b>"))
+            a.print()
+            a.print($("<p>").html("<b>Welcome you hacker has got my shell!</b>"))
         }
     },
     "about": {
