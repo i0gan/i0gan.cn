@@ -1,7 +1,8 @@
 #! /bin/bash
 #  author: i0gan
 # for push web assert page to server
-
-tar -czf www.tgz www
-scp www.tgz i0gan@i0gan.cn:/home/i0gan/
-rm www.tgz
+rm -rf ./lgx
+cp -r ../lgx .
+tar -czf i0gan.cn.tgz --exclude=/i0gan.cn.tgz --exclude=./.git ./
+scp i0gan.cn.tgz i0gan@i0gan.cn:/home/i0gan/ 
+rm i0gan.cn.tgz

@@ -1,0 +1,4 @@
+#! /bin/sh
+sudo apt update
+sudo apt install git gcc g++
+git clone https://github.com/i0gan/lgx

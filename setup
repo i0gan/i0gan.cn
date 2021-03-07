@@ -1,0 +1,13 @@
+#! /bin/sh
+cd lgx
+make -j 8
+cp out/lgx ../lgx_server
+ret=$?
+cd ..
+sudo echo
+if [[ $ret != 0 ]];then
+	sudo ./lgx_server -c etc/main.conf &
+	sudo ./lgx_server -c etc/blog.conf &
+	sudo ./lgx_server -c etc/life.conf &
+fi
+rm ./lgx_server

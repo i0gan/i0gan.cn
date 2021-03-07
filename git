@@ -1,0 +1,5 @@
+#! /bin/sh
+rm -rf lgx
+git add .
+git commit -m "new"
+git push
